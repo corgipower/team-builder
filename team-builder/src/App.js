@@ -3,24 +3,14 @@ import './App.css';
 import Form from './components/Form'
 
 function App() {
-  const [teamMembers, setTeamMembers] = useState({
-    name: '',
-    email: '',
-    role: '',
-  });
-
-  const onInputChange = event => {
-    setTeamMembers({
-      ...teamMembers,
-      [event.target.name]: event.target.value,
-    })
-  }
+  const [teamMembers, setTeamMembers] = useState([]);
 
   return (
     <div className="App">
       <h1>Team</h1>
-      <Form onInputChange={onInputChange} />
-      <p>{teamMembers.name} {teamMembers.email} {teamMembers.role}</p>
+      <Form teamMembers={teamMembers} setTeamMembers={setTeamMembers} />
+      {teamMembers.map((member, i) => 
+      <p key={i}>{member.memberName} {member.email} {member.role}</p>)}
     </div>
   );
 }
